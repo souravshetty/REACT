@@ -1,0 +1,23 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "This is a react project",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/souravshetty/react.git"
+  },
+  "author": "sourav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/souravshetty/react/issues"
+  },
+  "homepage": "https://github.com/souravshetty/react#readme",
+  "devDependencies": {
+    "parce": "^1.2.8",
+    "parcel": "^2.14.4"
+  }
+}
