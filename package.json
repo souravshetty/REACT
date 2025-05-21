@@ -2,8 +2,9 @@
   "name": "react",
   "version": "1.0.0",
   "description": "This is a react project",
-  "main": "App.js",
   "scripts": {
+    "start":"parcel index.html",
+    "build":"parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -19,5 +20,12 @@
   "devDependencies": {
     "parce": "^1.2.8",
     "parcel": "^2.14.4"
-  }
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "browsersList": [
+    "last 2 versions"
+  ]
 }
