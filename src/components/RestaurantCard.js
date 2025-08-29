@@ -20,4 +20,18 @@ const RestaurantCard = (props) => {
 	);
 };
 
+//Higher order component
+//input -reatuarantCardPromoted
+ export const withPromotedLabel=(RestaurantCard)=>{
+	return(props)=>{
+		return(
+			<div>
+				<label className="absolute bg-black m-2 p-2 text-white rounded-lg">Promoted</label>
+				<RestaurantCard {...props}/>
+				{/* //...props spread operator will receive all the props thats been passed in */}
+			</div>
+		)
+	}
+}
+
 export default RestaurantCard;

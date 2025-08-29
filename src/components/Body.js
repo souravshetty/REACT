@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard,{withPromotedLabel} from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -43,14 +43,15 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
 	///to check how many times the comp has rendered
-	console.log("render");
+	
 	//local state variable -super powerful variable
 	const [listOfRestaurants, setlistOfRestuarant] = useState([]);
 
 	//initialsetFiltered res is alloted to orif=ginal list of rest
 	const [filteredListOfRestaurant, setFilteredListOfRestauarnt] = useState([]);
-
+   console.log("bodyrender :", filteredListOfRestaurant);
 	const [searchText, setSearchText] = useState("");
+	const RestaurantCardPromoted=withPromotedLabel(RestaurantCard)
 	useEffect(() => {
 		fetchData();
 	}, []);
@@ -128,7 +129,11 @@ const Body = () => {
 						key={restaurant.info.id}
 						to={"/restaurant/" + restaurant.info.id}
 					>
-						<RestaurantCard resdata={restaurant} />
+						{/* if restaurant.data.promoted is true use the restaurant Cradpromoted component else */}
+						{restaurant.info.isOpen?(
+						<RestaurantCardPromoted resdata={restaurant} />):(
+						<RestaurantCard resdata={restaurant} />)
+						}		
 					</Link>
 				))}
 			</div>
