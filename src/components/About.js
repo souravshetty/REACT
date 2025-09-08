@@ -1,7 +1,16 @@
+import { useState } from "react";
+import User from "./User";
+import UserClass from "./UserClass";
 const About=()=>{
-    return(
-        <h1>About page </h1>
-    )
+    const [count,setCount]=useState(0)
+    return (
+			<div>
+				<h1>About page {count}</h1>
+                <button onClick={()=>setCount(count+1)}>Increase Count</button>
+				<User name={"sourav"} location={"CKM"}/>
+                <UserClass/>
+			</div>
+		);
 
 }
 export default About;
