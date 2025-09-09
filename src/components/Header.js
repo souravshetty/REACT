@@ -14,23 +14,23 @@ const Header = () => {
 	const onLine=useOnlineStatus();
 
 	return (
-		<div className="heading">
+		<div className="flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50 ">
 			<div className="logo-conatiner">
-				<img className="logo" src={LOGO_URL} />
+				<img className="w-46" src={LOGO_URL} />
 			</div>
-			<div className="nav-items">
-				<ul>
-					<li>Online Staus:{onLine ? "🟢" : "🔴"}</li>
-					<li>
+			<div className="flex items-center px-10">
+				<ul className="flex">
+					<li className="px-4">Online Staus:{onLine ? "🟢" : "🔴"}</li>
+					<li className="px-4">
 						<Link to="/">Home</Link>
 					</li>
-					<li>
+					<li className="px-4">
 						<Link to="/about"> About</Link>
 					</li>
-					<li>
+					<li className="px-4">
 						<Link to="/grocery"> Grocery</Link>
 					</li>
-					<li>
+					<li className="px-4">
 						<Link to="/contact">contact</Link>
 					</li>
 					{/*  if i use href the whole page will reload <a href="/contact">Contact</a> */}
