@@ -8,7 +8,7 @@ const About=()=>{
 				<h1>About page {count}</h1>
                 <button onClick={()=>setCount(count+1)}>Increase Count</button>
 				<User name={"sourav"} location={"CKM"}/>
-                <UserClass/>
+                <UserClass name={"shettys"}/>
 			</div>
 		);
 
