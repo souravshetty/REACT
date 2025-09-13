@@ -1,32 +1,36 @@
-import { useEffect, useState } from "react";
+
 import Shimmer from "./Shimmer";
 import { MENU_API } from "../utils/constant";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 
 const RestaurantMenu=()=>{
-    const[resInfo,setResInfo]=useState(null);
+   
     //to dynaic get the res id 
     const {resId} = useParams();
+    const resInfo=useRestaurantMenu(resId)
+    //removed all the beloe bcz for optimisation so that this component jsut foceuseon dispaying the restuarnats rather then fetching and diplaying
+    //  const[resInfo,setResInfo]=useState(null);
     // const params=useParmas();
     // console.log(Params);
     // in order to call the api we can use use effect
-  useEffect(()=>{
-    fetchMenu();
-  },[])
- const fetchMenu= async()=>{
+//   useEffect(()=>{
+//     fetchMenu();
+//   },[])
+//  const fetchMenu= async()=>{
     // const data = await fetch(
 	// 		"https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=23678"
 	// 	);
     // All the apis shld come from constants
     //It will concatinate the resId to the Api
-        const data = await fetch(MENU_API + resId);
-    const json=await data.json();
-    console.log(json);
-    setResInfo(json.data)
+    //     const data = await fetch(MENU_API + resId);
+    // const json=await data.json();
+    // console.log(json);
+    // setResInfo(json.data)
    
 
- }
+ 
  if (resInfo === null) return <Shimmer />;
 
 
@@ -34,8 +38,8 @@ const RestaurantMenu=()=>{
  const { name, cuisines, costForTwoMessage } =
 		resInfo?.cards?.[2]?.card?.card?.info || {};
 
-        const {itemCards}=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-        console.log (itemCards)
+  const {itemCards}=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+  console.log (itemCards)
 
 
 
@@ -62,5 +66,5 @@ const RestaurantMenu=()=>{
 			</div>
 		);
 
-}
+    }
 export default RestaurantMenu;

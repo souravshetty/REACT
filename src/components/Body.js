@@ -1,8 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 // let listOfRestaurants=[{
 //     id: "994419",
@@ -17,7 +18,7 @@ import { Link } from "react-router-dom";
 //         "Chinese",
 //         "Oriental",
 //         "Asian",
-    
+
 //     ],
 //     avgRating: 3.9,
 
@@ -35,47 +36,48 @@ import { Link } from "react-router-dom";
 //         "Chinese",
 //         "Oriental",
 //         "Asian",
-    
+
 //     ],
 //     avgRating: 4.9},
 // ]
 
-
 const Body = () => {
-    ///to check how many times the comp has rendered
-	console.log("render")
-    //local state variable -super powerful variable
-    const [listOfRestaurants,setlistOfRestuarant]=useState([])
+	///to check how many times the comp has rendered
+	console.log("render");
+	//local state variable -super powerful variable
+	const [listOfRestaurants, setlistOfRestuarant] = useState([]);
 
 	//initialsetFiltered res is alloted to orif=ginal list of rest
-	const [filteredListOfRestaurant,setFilteredListOfRestauarnt]=useState([]);
+	const [filteredListOfRestaurant, setFilteredListOfRestauarnt] = useState([]);
 
-	const [searchText ,setSearchText]=useState("");
-     useEffect(()=>{fetchData()
-
-     },[])
-     const fetchData=async()=>{
-        const data = await fetch(
-					"https://proxy.corsfix.com/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-				);
- const json=await data.json();
- console.log(json);
- console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
- //optional chaining
- //Initially i am setting the list of restuarts to rest arrays
- setlistOfRestuarant(
-		json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
- );
- setFilteredListOfRestauarnt(
-		json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
- );
-
- //conditional rendering
- 
-     }
-	 if (listOfRestaurants.length == 0) {
-			return <Shimmer />;
-		}
+	const [searchText, setSearchText] = useState("");
+	useEffect(() => {
+		fetchData();
+	}, []);
+	const fetchData = async () => {
+		const data = await fetch(
+			"https://proxy.corsfix.com/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+		);
+		const json = await data.json();
+		console.log(json);
+		console.log(
+			json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+		);
+		//optional chaining
+		//Initially i am setting the list of restuarts to rest arrays
+		setlistOfRestuarant(
+			json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+		);
+		setFilteredListOfRestauarnt(
+			json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+		);
+	};
+	const getStatus = useOnlineStatus();
+	if (getStatus == false) return <h1>Please check ur internet connection</h1>;
+	//conditional rendering
+	if (listOfRestaurants.length == 0) {
+		return <Shimmer />;
+	}
 	return (
 		<div className="body">
 			<div className="filter">
@@ -129,6 +131,5 @@ const Body = () => {
 		</div>
 	);
 };
-
 
 export default Body;
