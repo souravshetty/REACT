@@ -22,14 +22,12 @@ const Header = () => {
 						<Link to="/">Home</Link>
 					</li>
 					<li>
-						{/*  if i use href the whole page will reload <a href="/contact">Contact</a> */}
-					</li>
-					<li>
 						<Link to="/about"> About</Link>
 					</li>
 					<li>
 						<Link to="/contact">contact</Link>
 					</li>
+					{/*  if i use href the whole page will reload <a href="/contact">Contact</a> */}
 					<button
 						className="login"
 						onClick={() => {
@@ -45,5 +43,5 @@ const Header = () => {
 		</div>
 	);
 };
-  
+
 export default Header;
